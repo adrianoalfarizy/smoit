@@ -12,54 +12,71 @@ class MasterLokasiController extends Controller
      */
     public function index()
     {
-        //
+        $lokasi = MasterLokasi::orderBy('nama_lokasi')->paginate(10);
+
+        return view('master_lokasi.index', compact('lokasi'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $masterLokasi = new MasterLokasi();
+
+        return view('master_lokasi.create', compact('masterLokasi'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'kode_lokasi'  => 'required|string|max:20|unique:master_lokasi,kode_lokasi',
+            'nama_lokasi'  => 'required|string|max:100',
+            'jenis_lokasi' => 'nullable|string|max:50',
+            'alamat'       => 'nullable|string',
+            'kota'         => 'nullable|string|max:100',
+            'pic_nama'     => 'nullable|string|max:100',
+            'pic_kontak'   => 'nullable|string|max:50',
+            'status_aktif' => 'required|boolean',
+            'keterangan'   => 'nullable|string',
+        ]);
+
+        MasterLokasi::create($validated);
+
+        return redirect()
+            ->route('master-lokasi.index')
+            ->with('success', 'Data lokasi berhasil ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(MasterLokasi $masterLokasi)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(MasterLokasi $masterLokasi)
     {
-        //
+        return view('master_lokasi.edit', compact('masterLokasi'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, MasterLokasi $masterLokasi)
     {
-        //
+        $validated = $request->validate([
+            'kode_lokasi'  => 'required|string|max:20|unique:master_lokasi,kode_lokasi,' . $masterLokasi->id,
+            'nama_lokasi'  => 'required|string|max:100',
+            'jenis_lokasi' => 'nullable|string|max:50',
+            'alamat'       => 'nullable|string',
+            'kota'         => 'nullable|string|max:100',
+            'pic_nama'     => 'nullable|string|max:100',
+            'pic_kontak'   => 'nullable|string|max:50',
+            'status_aktif' => 'required|boolean',
+            'keterangan'   => 'nullable|string',
+        ]);
+
+        $masterLokasi->update($validated);
+
+        return redirect()
+            ->route('master-lokasi.index')
+            ->with('success', 'Data lokasi berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(MasterLokasi $masterLokasi)
     {
-        //
+        $masterLokasi->delete();
+
+        return redirect()
+            ->route('master-lokasi.index')
+            ->with('success', 'Data lokasi berhasil dihapus.');
     }
 }
