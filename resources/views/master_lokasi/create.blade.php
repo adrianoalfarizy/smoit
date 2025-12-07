@@ -5,7 +5,7 @@
     <h1 class="h3 mb-3">Tambah Lokasi</h1>
 
     @include('master_lokasi._form', [
-        'route' => route('master-lokasi.store'),
+        'route' => route('master-lokasi.update'),
         'method' => 'POST',
         'buttonText' => 'Simpan',
     ])

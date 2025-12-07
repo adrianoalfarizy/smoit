@@ -5,95 +5,72 @@
     @endif
 
     <div class="mb-3">
-        <label for="kode_lokasi" class="form-label">Kode Lokasi *</label>
+        <label for="kode_kategori" class="form-label">Kode Kategori *</label>
         <input type="text"
-               name="kode_lokasi"
-               id="kode_lokasi"
-               class="form-control @error('kode_lokasi') is-invalid @enderror"
-               value="{{ old('kode_lokasi', $masterLokasi->kode_lokasi ?? '') }}">
-        @error('kode_lokasi')
+               name="kode_kategori"
+               id="kode_kategori"
+               class="form-control @error('kode_kategori') is-invalid @enderror"
+               value="{{ old('kode_kategori', $kategoriPekerjaan->kode_kategori ?? '') }}">
+        @error('kode_kategori')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
 
     <div class="mb-3">
-        <label for="nama_lokasi" class="form-label">Nama Lokasi *</label>
+        <label for="nama_kategori" class="form-label">Nama Kategori *</label>
         <input type="text"
-               name="nama_lokasi"
-               id="nama_lokasi"
-               class="form-control @error('nama_lokasi') is-invalid @enderror"
-               value="{{ old('nama_lokasi', $masterLokasi->nama_lokasi ?? '') }}">
-        @error('nama_lokasi')
+               name="nama_kategori"
+               id="nama_kategori"
+               class="form-control @error('nama_kategori') is-invalid @enderror"
+               value="{{ old('nama_kategori', $kategoriPekerjaan->nama_kategori ?? '') }}">
+        @error('nama_kategori')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
 
     <div class="mb-3">
-        <label for="jenis_lokasi" class="form-label">Jenis Lokasi</label>
-        <input type="text"
-               name="jenis_lokasi"
-               id="jenis_lokasi"
-               placeholder="kantor / client / gudang"
-               class="form-control @error('jenis_lokasi') is-invalid @enderror"
-               value="{{ old('jenis_lokasi', $masterLokasi->jenis_lokasi ?? '') }}">
-        @error('jenis_lokasi')
-        <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-    </div>
-
-    <div class="mb-3">
-        <label for="alamat" class="form-label">Alamat</label>
-        <textarea name="alamat"
-                  id="alamat"
+        <label for="deskripsi" class="form-label">Deskripsi</label>
+        <textarea name="deskripsi"
+                  id="deskripsi"
                   rows="3"
-                  class="form-control @error('alamat') is-invalid @enderror">{{ old('alamat', $masterLokasi->alamat ?? '') }}</textarea>
-        @error('alamat')
+                  class="form-control @error('deskripsi') is-invalid @enderror">{{ old('deskripsi', $kategoriPekerjaan->deskripsi ?? '') }}</textarea>
+        @error('deskripsi')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
 
     <div class="row">
         <div class="mb-3 col-md-6">
-            <label for="kota" class="form-label">Kota</label>
-            <input type="text"
-                   name="kota"
-                   id="kota"
-                   class="form-control @error('kota') is-invalid @enderror"
-                   value="{{ old('kota', $masterLokasi->kota ?? '') }}">
-            @error('kota')
+            <label for="sla_jam_response" class="form-label">SLA Jam Response</label>
+            <input type="number"
+                   min="0"
+                   name="sla_jam_response"
+                   id="sla_jam_response"
+                   class="form-control @error('sla_jam_response') is-invalid @enderror"
+                   value="{{ old('sla_jam_response', $kategoriPekerjaan->sla_jam_response ?? '') }}">
+            @error('sla_jam_response')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
 
         <div class="mb-3 col-md-6">
-            <label for="pic_nama" class="form-label">Nama PIC</label>
-            <input type="text"
-                   name="pic_nama"
-                   id="pic_nama"
-                   class="form-control @error('pic_nama') is-invalid @enderror"
-                   value="{{ old('pic_nama', $masterLokasi->pic_nama ?? '') }}">
-            @error('pic_nama')
+            <label for="sla_jam_selesai" class="form-label">SLA Jam Selesai</label>
+            <input type="number"
+                   min="0"
+                   name="sla_jam_selesai"
+                   id="sla_jam_selesai"
+                   class="form-control @error('sla_jam_selesai') is-invalid @enderror"
+                   value="{{ old('sla_jam_selesai', $kategoriPekerjaan->sla_jam_selesai ?? '') }}">
+            @error('sla_jam_selesai')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
     </div>
 
     <div class="mb-3">
-        <label for="pic_kontak" class="form-label">Kontak PIC</label>
-        <input type="text"
-               name="pic_kontak"
-               id="pic_kontak"
-               class="form-control @error('pic_kontak') is-invalid @enderror"
-               value="{{ old('pic_kontak', $masterLokasi->pic_kontak ?? '') }}">
-        @error('pic_kontak')
-        <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-    </div>
-
-    <div class="mb-3">
         <label for="status_aktif" class="form-label">Status *</label>
         @php
-            $status = old('status_aktif', $masterLokasi->status_aktif ?? 1);
+            $status = old('status_aktif', $kategoriPekerjaan->status_aktif ?? 1);
         @endphp
         <select name="status_aktif"
                 id="status_aktif"
@@ -111,7 +88,7 @@
         <textarea name="keterangan"
                   id="keterangan"
                   rows="3"
-                  class="form-control @error('keterangan') is-invalid @enderror">{{ old('keterangan', $masterLokasi->keterangan ?? '') }}</textarea>
+                  class="form-control @error('keterangan') is-invalid @enderror">{{ old('keterangan', $kategoriPekerjaan->keterangan ?? '') }}</textarea>
         @error('keterangan')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -120,7 +97,7 @@
     <button type="submit" class="btn btn-primary">
         {{ $buttonText }}
     </button>
-    <a href="{{ route('master-lokasi.index') }}" class="btn btn-secondary">
+    <a href="{{ route('kategori-pekerjaan.index') }}" class="btn btn-secondary">
         Batal
     </a>
 </form>
