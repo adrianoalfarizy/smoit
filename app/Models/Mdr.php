@@ -19,6 +19,7 @@ class Mdr extends Model
         'jam_selesai',
         'status_pekerjaan',
         'catatan',
+        'bukti_pekerjaan', // 🆕
     ];
 
     public function teknisi()
